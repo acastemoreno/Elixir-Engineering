@@ -1,0 +1,581 @@
+#+TITLE: Programación funcional con Elixir y Phoenix orientado a Ingeniería
+#+SUBTITLE: Funciones anonimas, Funciones con nombre, Mix, Testing 
+#+AUTHOR: Albert Castellano Moreno
+#+EMAIL: acastemoreno@gmail.com
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:nil p:nil pri:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:nil todo:t |:t
+#+CREATOR: Emacs 24.4.1 (Org mode 8.2.10)
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: es
+#+SELECT_TAGS: export
+
+#+GITHUB: http://github.com/acastemoreno
+
+#+FAVICON: images/elixir.png
+#+ICON: images/elixir.png
+#+HASHTAG: #elixir #makerlab #AmiguitoEsMiPastorNadaMeFaltara
+
+* Instalación
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+** Windows!!! :v
+Super facil, solo tienes que descargar el instalador en el [[https://repo.hex.pm/elixir-websetup.exe][Link]] y cuando instales dar siguiente siguiente.
+
+La fuente del link es: [[http://elixir-lang.org/install.html][Install Elixir]]
+** Linux
+Puedes descargar los archivos deb, rpm y etc desde el siguiente [[https://www.erlang-solutions.com/resources/download.html][Erlang Solutions]]
+
+* Accediendo a consola
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+** Windows!!! :v
+Comando basicos:
+- Ejecuta el la aplicacion cmd
+- Para entrar en una unidad usamos =cd /d D:=
+- Para crear una carpeta usamos =mkdir prueba=
+- Para enlistar todos los elementos de donde nos estamos ubicando usamos =dir=
+- Para entrar a la carpeta usandos =cd prueba=
+- Para retroceder a la carpeta padre usamos =cd ..=
+- Para eliminar la carpeta creada usamos =rmdir prueba=
+Guia basica que explica lo anterior y más en el [[http://www.falconmasters.com/offtopic/como-utilizar-consola-de-windows/][link]]
+
+* Entramos a la Interactive Elixir Shell (IEx)
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+** 
+Nos ubicamos por consola en una carpeta donde sera se ubicaran nuestros archivos y ejecutamos en esta el comando =iex=. Si nos aparece el siguiente mensaje similar a la imagen, habremos instalado correctamente erlang y elixir.
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 800px
+[[file:images/inicio en iex.png]]
+#+END_CENTER
+
+* Instalamos el editor de Texto
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** 
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+Recomiendo instalar el editor de texto [[https://atom.io/][Atom]], la instalacion es bastante sencilla y lo siguiente que tenemos que hacer es instalar un plugin de elixir para que podamos programar más comodamente en atom.
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 350px
+[[file:images/install_package.png]]
+#+END_CENTER
+
+** 
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 800px
+[[file:images/install_elixir_atom.png]]
+#+END_CENTER
+
+** Agregando carpeta a atom
+Ahora agregamos la carpeta a atom para tener un mejor manejo de archivos y carpetas desde atom.
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 350px
+[[file:images/add_folder.png]]
+#+END_CENTER
+** 
+Cuando selecionemos la carpeta donde estaran nuestros archivos aceptamos y se mostrara lo siguiente:
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 350px
+[[file:images/view_folder.png]]
+#+END_CENTER
+Estamos listos para empezar.
+
+* Contenido
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Contenido
+- Funciones Anonimas
+- Shortcut &
+- Modulos
+- Funciones con Nombre
+- Mix
+  + Introduccion a Mix
+  + Demo: Mix Project and Mix Tasks
+
+* Funciones anonimas
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Creando funciones anonimas
+Las funciones anonimas tienen la siguiente forma: =fn(<parametro1>, <parametro2>, ....) -> <ejecucion y retorno> end=
+
+Crearemos funciones en IEx y las guardaremos en una variable para posteriormente utilizarlas:
+
+#+BEGIN_SRC elixir
+iex> velocidad = fn (distancia) -> :math.sqrt(2 * 9.81 * distancia) end
+#Function<6.52032458/1 in :erl_eval.expr/5>
+## El retorno nos sirve para corroborrar que hemos creado una funcion y 
+## no resulto en error.
+iex> sum = fn (a, b) -> a + b end
+#Function<12.17052888 in :erl_eval.expr/5>
+iex> sum.(1, 2)
+3
+#+END_SRC
+
+** Evaluamos la función
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+#+BEGIN_SRC elixir
+iex> velocidad = fn (distancia) -> :math.sqrt(2 * 9.81 * distancia) end
+#Function<6.52032458/1 in :erl_eval.expr/5>
+iex> velocidad.(3)
+7.672027111526653
+iex> sum = fn (a, b) -> a + b end
+#Function<12.17052888 in :erl_eval.expr/5>
+iex> sum.(1, 2)
+3
+#+END_SRC
+Al ejecutar =velocidad.(3)=, un patron se matchea con la data suministrada. 
+
+En el ejemplo, el patron =distancia= se matchea con =3= (=distancia = 3=). Esto resulta en la asignacion de =3= a la variable =distancia=. 
+
+Para luego ser utilizada en la evaluacion =:math.sqrt(2 * 9.81 * distancia)=. 
+
+=:math.sqrt= toma la raiz cuadrada de la expresion.
+
+Nota: el =:math= es un modulo de Erlang. Usar atomos en minusculas nos sirve para llamar modulos de Erlang (sean modulos propio del lenguaje o mediante librerias).
+
+** Funciones anonimas creadas en multiples Lineas
+Ahora podemos separar en piezas nuestras funciones dentro de multiples lineas, esto hace que sea más legible. IEx mantiene la linea abierta hasta que tipees =end=. El ejemplo anterior de esta manera:
+#+BEGIN_SRC elixir
+##En este caso obviamos englobar en parentesis
+##los parametros porque solo existe uno solo.
+iex> velocidad = fn 
+...> distancia -> :math.sqrt(2 * 9.81 * distancia)
+...> end
+#Function<6.52032458/1 in :erl_eval.expr/5>
+iex> velocidad.(10)
+14.007141035914502
+#+END_SRC
+** Funciones Anonimas y Pattern Matching
+Como anterioremente explique, cada vez que evaluamos una funcion anonima, un patron se matchea con la data suministrada, de lo cual deriva en asignaciones, para que luego sean utilizadas. Esto significa que se puede hacer matcheos de mayor complejidad
+Ejemplos:
+#+BEGIN_SRC elixir
+##En este caso se esta pasando un solo parametro que es una tupla y se esta devolviendo otra tupla con el orden invertido.
+iex> intercambio = fn 
+...> {primero, segundo} -> {segundo, primero}
+...> end
+#Function<6.52032458/1 in :erl_eval.expr/5>
+iex> intercambio.({6, 8})
+{8, 6}
+#+END_SRC
+** Una funcion anonima, multiples cuerpos
+Para el siguiente ejemplo, en mi carpeta creo un archivo =holiwoli.txt= que no es necesario que tenga contenido.
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 650px
+[[file:images/holiwoli.png]]
+#+END_CENTER
+** 
+Ejecuto =iex= en la carpeta donde cree =holiwoli.txt= y ejecuto una que me intereza. Analizamos el uso de una funcion llamada =open=, dentro de la libreria =File=, que por defecto Elixir ya incorpora.
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 650px
+[[file:images/file_open.png]]
+#+END_CENTER
+Al ejecutar la funcion, esta retorna una tupla, tal que su primer elemento es un atomo que representa el exito o fracaso de la operación, y el segundo es segun el primer termino, un identificador unico de proceso ó un mensaje de error.
+** 
+Ahora creamos una funcion anonima que procese ese resultado y dependiendo del caso hace una accion u otra.
+#+BEGIN_SRC elixir
+iex> verificar_archivo = fn 
+...> {:ok, archivo} -> "Leyendo archivo: #{IO.read(archivo, :line)}"
+...> {_, error}  -> "Error: #{:file.format_error(error)}"
+...> end
+#Function<6.52032458/1 in :erl_eval.expr/5>
+#+END_SRC
+** 
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 850px
+[[file:images/verificar_archivo.png]]
+#+END_CENTER
+Lo que hace la función es verificar el primer primer patron que en este caso es ={:ok, archivo}=. Si consigue hacer el match ={:ok, archivo} = File.open(".......")= imprime el texto =Leyendo archivo: ........=, y si no matchea intentara hacer un nuevo match con ={_, error}= de la siguiente forma ={_, error} = File.open(".......")=, si logra hacer este ultimo match se imprimira el texto =Error: ..........=
+
+Significa que importa el orden indicado de los patrones.
+
+* Shortcut &
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** 
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+Hemos observador hasta el momento que para crear una funcion anonima es necesario definir 2 partes importantes:
+- El patron
+- El contenido que ejecuta
+Ahora, existe algo más practico que toma en concideracion el orden de los parametros que se estan tomando. Eso más practico es el uso de =&= para definir funciones anonimas. 
+
+Aqui un ejemplo en la forma como se utilizan.
+#+BEGIN_SRC elixir
+iex> doble = &(&1 * 2)
+#Function<6.52032458/1 in :erl_eval.expr/5>
+iex> doble.(7)
+14
+#+END_SRC
+=&(...)= se refiere a la creacion de una funcion anonima. =&1= representa el primer parametro obtenido al evaluar la funcion. Entonces =&(&1 * 2)= es una funcion anonima de aridad 1 que toma su primer parametro (primer y unico parametro) y devuelve el doble.
+** 
+=&(....)= tiene las siguientes variaciones:
+- =&{....}=: Funcion anonima que crea una tupla como resultado
+- =&[....]=: Funcion anonima que crea una lista como resultado
+Ejemplos:
+#+BEGIN_SRC elixir
+iex> cociente_residuo = &{ div(&1,&2), rem(&1,&2) }
+#Function<6.52032458/1 in :erl_eval.expr/5>
+iex> cociente_residuo.(13, 5)
+{2, 3}
+iex> lista = &[&1, &1 * 2, &1 * 3]
+#Function<6.52032458/1 in :erl_eval.expr/5>
+iex> lista.(5)
+[5, 10, 15]
+#+END_SRC
+** Usos de &
+Sabemos que hace =&(....)=, pero para que sirve?
+
+Sirve crear funciones anonimas que sirvan como parametros a otras funciones..
+
+Ejemplos:
+#+BEGIN_SRC elixir
+iex> Enum.map [1,2,3,4], &(&1 + 1)
+[2, 3, 4, 5]
+iex> Enum.map [1,2,3,4], &(&1 * &1)
+[1, 4, 9, 16]
+iex> Enum.map [1,2,3,4], &(&1 < 3)
+[true, true, false, false]
+#+END_SRC
+* Modulos
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+** Qué es un Modulo?
+Una vez que tu codigo crece, es una necesidad real estructuralo. Partes tu codigo en funciones con nombre y los organizas dentro de modulos.
+
+Los modulos te dan la habilidad de guardar, encapsular, compartir y manejar tu codigo de la manera más eficiente.
+
+Cada modulo tiene extension =.ex= ó =.exs= (=.ex= es para archivos que sera compilados y =.exs= son para crear scripts ó mejor dicho archivos que se interpretan en beam pero que no es necesario que se compilen).
+
+Nota: Nombres de Archivos que representen modulos siempre estaran en minusculas. Es una convencion que se respeta.
+** Creando nuestro primer modulo
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+Creamos el archivo =caida.exs= dentro de nuestra carpeta y con el editor de texto escribimos lo siguiente:
+
+#+BEGIN_SRC elixir
+#Archivo: caida.exs
+defmodule Caida do
+  def velocidad(altura) do
+    :math.sqrt(2 * 9.81 * altura)
+  end
+end
+#+END_SRC
+En el codigo escrito podemos ver que existe un modulo =Caida=, tal que engloba entre =do ...... end= a una funcion con nombre =velocidad=. Esta funcion =velocidad=, recibe un parametro =altura=, que al ser evaluada se matchea para luego ejecutarse el contenido entre =do ... end= que es =:math.sqrt(2 * 9.81 * altura)=
+** Cargando nuestro codigo en consola
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+Existen 2 formas de usar el codigo en archivos.
+- Ejecutando =iex <nombre de archivo>= para luego ejecutarlo
+#+BEGIN_SRC cmd
+$ iex caida.exs
+iex> Caida.velocidad(100)
+44.294469180700204
+#+END_SRC
+- Estando en iex, ejecutamos =c <"nombre de archivo">=
+#+BEGIN_SRC elixir
+iex> c "caida.exs"
+[Caida]
+iex> Caida.velocidad(100)
+44.294469180700204
+#+END_SRC
+** Patten Matching en funciones con nombre
+En funciones anonimas teniamos la posibilidad de crear multiples cuerpos ó por decirlo de otra forma, que la funcion responda segun los parametros de entrada.
+
+Lo mismo tenemos en funciones con nombres.
+
+Ejemplo:
+#+BEGIN_SRC elixir
+#factorial.exs
+defmodule Factorial do
+  def de(0), do: 1
+  def de(n), do: n * de(n-1)
+end
+#+END_SRC
+** 
+#+BEGIN_SRC elixir
+#factorial.exs
+defmodule Factorial do
+  def de(0), do: 1
+  def de(n), do: n * de(n-1)
+end
+#+END_SRC
+Cuando el parametro es 0, el resultado es 1.
+
+Cuando el parametro no es 0, almacenamos el parametro de entrada en la variable =n= y luego evaluamos =n= por el factorial de =n= menos 1.
+** 
+#+BEGIN_SRC elixir
+#factorial1.exs
+iex> c "factorial.exs"
+[Factorial]
+iex> Factorial.de(3)
+6
+iex> Factorial.de(7)
+5040
+iex> Factorial.de(10)
+3628800
+#+END_SRC
+** Otro ejemplo
+#+BEGIN_SRC elixir
+#fibo.exs
+defmodule Fibonacci do
+  def de(0), do: 0
+
+  def de(1), do: 1
+
+  def de(n) do
+    de(n-1) + de(n-2)
+  end
+end
+#+END_SRC
+** Guard Clauses
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+=when= nos ayuda a verificar los tipos de las variables que hacen match.
+#+BEGIN_SRC elixir
+#lista_numero.exs
+defmodule ListaNumero do
+  def que_es(x) when is_number(x) do
+    "#{x} es un numero"
+  end
+  def que_es(x) when is_list(x) do
+    "#{inspect(x)} es una lista"
+  end
+end
+#+END_SRC
+#+BEGIN_SRC elixir
+iex> c "lista_numero.exs"
+[ListaNumero]
+iex> ListaNumero.que_es(5)
+"5 es un numero"
+iex> ListaNumero.que_es([5])
+"[5] es una lista"
+#+END_SRC
+LIMITACIONES: Solo estan permitidas estas [[http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses][Funciones]] dentro de =when=.
+** Pipe Operator |>
+Que pasa si queremos elevar al cuadrado los elementos de una lista para luego filtrar a los que sean menores a 40. Tendriamos que usar la siguiente funcion:
+#+BEGIN_SRC elixir
+iex> lista = 1..10
+1..10
+iex> cuadrado = Enum.map(lista, &(&1 * &1))
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+iex> filtrado = Enum.filter(cuadrado, &(&1 < 40))
+[1, 4, 9, 16, 25, 36]
+#+END_SRC
+Entendemos este codigo, pero almacenamos muchas variables temporales inscribles que ocupan recursos.
+** Pipe Operator |>
+Ahora, si no queremos almacenar variables temporales podemos hacer lo siguiente:
+#+BEGIN_SRC elixir
+iex> filtrado = Enum.filter(Enum.map(1..10, &(&1 * &1)), &(&1 < 40))
+[1, 4, 9, 16, 25, 36]
+## Lo siento, por hacerles ver algo tan feo.
+#+END_SRC
+Funciona, pero es dificil de leer y escalar, facilmente puede ocasionar errores. No es elegante.
+* 
+Muchos lenguajes nos obligan a tomar una decision sobre cual usar. Ser poco productivo pero hacer codigo eficiente ó ser productivo pero tu codigo es ineficiente.
+calma.jpg
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 600px
+[[file:images/calma.jpg]]
+#+END_CENTER
+** 
+Siganme los buenos.
+
+Una solucion elegante es pensar en funciones como transformaciones de información. Tal que el primer parametro de una funcion es el elemento a transformar, y los demas parametros son configuraciones a la transformación que se da.
+
+Resumiendo en una sola linea. En ves de usar f(val,a,b), usamos val |> f(a,b). 
+
+Aplicando a nuestro ejemplo.
+#+BEGIN_SRC elixir
+iex> resultado = 1..10 |> Enum.map(&(&1*&1)) |> Enum.filter(&(&1 < 40))
+[1, 4, 9, 16, 25, 36]
+#+END_SRC
+
+** 
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 450px
+[[file:images/mi_astucia.jpg]]
+#+END_CENTER
+
+* Mix
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Qué es Mix?
+Mix es una herramienta que mediante linea de comandos maneja projectos Elixir. 
+
+Mix es usado para crear nuevos proyectos, manejar dependencias, ejecutar pruebas, ejecutar tu proyecto.
+
+** Creando nuestro primer proyecto
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+Creamos nuestro primer proyecto Elixir usando el comando =mix new holi=
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 450px
+[[file:images/new_project.png]]
+#+END_CENTER
+
+** 
+Ahora observamos la siguiente estructura de archivos:
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 250px
+[[file:images/folder.png]]
+#+END_CENTER
+
+** Estructura
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+- =README.md=: Archivo Markdown que es usado para indicar requisitos y procedimientos para cuando otras personas usen nuestro proyecto, en especial cuando publiquemos nuestro proyecto como libreria.
+- =mix.exs=: Archivo que define el nombre de nuestro proyecto, la version, las dependencias, las librerias que funcionaran en su propio proceso, etc.
+- =.gitignore=: Archivo usado para manejar que archivos no seran trackeados por git (control de versiones).
+- Carpeta =test=: Contendra codigo util para hacer testing.
+- Carpeta "lib": Contendra la mayoria del codigo de nuestra aplicación.
+  + Archivo =holi.ex=: Archivo con el nombre de nuestro proyecto. Modulo que representa nuestra aplicación.
+- Carpeta =config=: Contiene configuraciones de nuestra aplicación.
+** Holi Woli
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+Elixir tiene una convención. Dentro de la carpeta =/lib=, debes crear otra carpeta con el mismo nombre del proyecto. Aqui escribiremos nuestro codigo. El archivo =holi.exs= nos servira cuando trabajemos con OTP. 
+
+Por tanto en la carpeta =lib/holi/= crearemos nuestro primer modulo junto con una función:
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 550px
+[[file:images/holi.png]]
+#+END_CENTER
+** 
+Cargamos nuestro proyecto a iex para poder usarlo dentro de la shell con el comando =iex -S mix=
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 550px
+[[file:images/iex_-S_mix.png]]
+#+END_CENTER
+Observamos que adicional al clasico inicio de sesion, iex nos informa que se compilaron 2 archivos y que se genero la aplicacion holi.
+Ahora, al ejecutar la función =Holi.Woli.saludo=, este devolvera un string =Hola Amiguitos xD=. Ademas notaremos que se creo una carpeta =build= donde estaran todos los archivos compilados de nuestra aplicación.
+
+* Testing
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Intro a Testing
+- Tests son codigos que verifican que el codigo de tu proyecto funciones correctamente.
+- Elixir tiene una fuerte cultura de testing.
+- ExUnit es la herramienta más usada para testing.
+
+** Anatomia Exunit test
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 550px
+[[file:images/testing.png]]
+#+END_CENTER
+
+** Ejecutando un testing
+Ejecuta =mix test=, aparecera el estado de las pruebas y si existe alguna falla mostrara información de donde existe la falla.
+
+** Ejercicio
+[[https://www.codewars.com/kata/tribonacci-sequence][Tribonacci]]
+#+BEGIN_SRC elixir
+#lib/holi/secuencia_tribonacci.ex
+defmodule Holi.SecuanciaTribonacci do
+  @spec tribonacci({number, number, number}, non_neg_integer) :: [number]
+  def tribonacci(signature, n) do
+    # your code here
+  end
+end
+#+END_SRC
+** Ejercicio Test
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+#+BEGIN_SRC elixir
+#lib/holi/secuencia_tribonacci.ex
+defmodule HoliTest do
+  use ExUnit.Case
+  import Holi.SecuanciaTribonacci, only: [tribonacci: 2]
+
+  doctest Holi
+
+  test "the truth" do
+    assert 1 + 1 == 2
+  end
+
+  test "Basic tests" do
+    assert tribonacci({1, 1, 1}, 10) == [1,1,1,3,5,9,17,31,57,105]
+    assert tribonacci({0, 0, 1}, 10) == [0,0,1,1,2,4,7,13,24,44]
+    assert tribonacci({0, 1, 1}, 10) == [0,1,1,2,4,7,13,24,44,81]
+    assert tribonacci({1, 0, 0}, 10) == [1,0,0,1,1,2,4,7,13,24]
+    assert tribonacci({0, 0, 0}, 10) == [0,0,0,0,0,0,0,0,0,0]
+    assert tribonacci({1, 2, 3}, 10) == [1,2,3,6,11,20,37,68,125,230]
+    assert tribonacci({3, 2, 1}, 10) == [3,2,1,6,9,16,31,56,103,190]
+    assert tribonacci({1, 1, 1}, 1) == [1]
+    assert tribonacci({300, 200, 100}, 0) == []
+    assert tribonacci({0.5, 0.5, 0.5}, 30) == [0.5,0.5,0.5,1.5,2.5,4.5,8.5,15.5,28.5,52.5,96.5,177.5,326.5,600.5,1104.5,2031.5,3736.5,6872.5,12640.5,23249.5,42762.5,78652.5,144664.5,266079.5,489396.5,900140.5,1655616.5,3045153.5,5600910.5,10301680.5]
+  end
+end
+#+END_SRC
+
+* [[https://www.codewars.com/?language=elixir][Have Fun]]
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+* Gracias ˊ・ω・ˋ
+  :PROPERTIES:
+  :SLIDE: thank-you-slide segue
+  :ASIDE: right
+  :ARTICLE: flexbox vleft auto-fadein
+  :END:

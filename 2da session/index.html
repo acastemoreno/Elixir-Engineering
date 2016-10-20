@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<!-- 2016-10-20 jue 04:38 -->
+<meta  charset="utf-8" />
+<meta  htto-equiv="X-UA-Compatible" content="chrome=1" />
+<meta  name="generator" content="Org-mode with org-ioslide" />
+<meta  name="author" content="Albert Castellano Moreno" />
+
+
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--This one seems to work all the time, but really small on ipad-->
+<!--<meta name="viewport" content="initial-scale=0.4">-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="stylesheet" media="all" href="theme/css/default.css" />
+<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css" />
+<link rel="stylesheet" media="all" href="theme/css/small-icon.css" />
+<base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+<script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+
+   <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+<script src="js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML,local/local" type="text/javascript"></script>
+</head>
+<body style="opacity: 0">
+<slides class="layout-widescreen">
+<slide class="title-slide segue nobackground">
+       <aside class="gdbar"><img src="images/elixir.png"></aside>
+       <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+       <hgroup class="auto-fadein">
+         <h1 data-config-title><!-- populated from slide_config.json --></h1>
+         <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+         <p data-config-presenter><!-- populated from slide_config.json --></p>
+       </hgroup>
+    </slide>
+  
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Instalación</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">Windows!!! :v</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Super facil, solo tienes que descargar el instalador en el <a href="https://repo.hex.pm/elixir-websetup.exe">Link</a> y cuando instales dar siguiente siguiente.
+</p>
+
+<p>
+La fuente del link es: <a href="http://elixir-lang.org/install.html">Install Elixir</a>
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">Linux</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Puedes descargar los archivos deb, rpm y etc desde el siguiente <a href="https://www.erlang-solutions.com/resources/download.html">Erlang Solutions</a>
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">Accediendo a consola</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">Windows!!! :v</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Comando basicos:
+</p>
+<ul>
+<li>Ejecuta el la aplicacion cmd</li>
+<li>Para entrar en una unidad usamos <code>cd /d D:</code></li>
+<li>Para crear una carpeta usamos <code>mkdir prueba</code></li>
+<li>Para enlistar todos los elementos de donde nos estamos ubicando usamos <code>dir</code></li>
+<li>Para entrar a la carpeta usandos <code>cd prueba</code></li>
+<li>Para retroceder a la carpeta padre usamos <code>cd ..</code></li>
+<li>Para eliminar la carpeta creada usamos <code>rmdir prueba</code></li>
+</ul>
+<p>
+Guia basica que explica lo anterior y más en el <a href="http://www.falconmasters.com/offtopic/como-utilizar-consola-de-windows/">link</a>
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">Entramos a la Interactive Elixir Shell (IEx)</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Nos ubicamos por consola en una carpeta donde sera se ubicaran nuestros archivos y ejecutamos en esta el comando <code>iex</code>. Si nos aparece el siguiente mensaje similar a la imagen, habremos instalado correctamente erlang y elixir.
+</p>
+
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/inicio en iex.png" alt="inicio en iex.png" width="800px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12">Instalamos el editor de Texto</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Recomiendo instalar el editor de texto <a href="https://atom.io/">Atom</a>, la instalacion es bastante sencilla y lo siguiente que tenemos que hacer es instalar un plugin de elixir para que podamos programar más comodamente en atom.
+</p>
+
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/install_package.png" alt="install_package.png" width="350px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/install_elixir_atom.png" alt="install_elixir_atom.png" width="800px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">Agregando carpeta a atom</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Ahora agregamos la carpeta a atom para tener un mejor manejo de archivos y carpetas desde atom.
+</p>
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/add_folder.png" alt="add_folder.png" width="350px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Cuando selecionemos la carpeta donde estaran nuestros archivos aceptamos y se mostrara lo siguiente:
+</p>
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/view_folder.png" alt="view_folder.png" width="350px" />
+</p>
+</div>
+</article>
+<p>
+Estamos listos para empezar.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14">Contenido</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13">Contenido</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>Funciones Anonimas</li>
+<li>Shortcut &amp;</li>
+<li>Modulos</li>
+<li>Funciones con Nombre</li>
+<li>Mix
+<ul>
+<li>Introduccion a Mix</li>
+<li>Demo: Mix Project and Mix Tasks</li>
+</ul></li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline23" class="outline-2">
+<h2 id="orgheadline23">Funciones anonimas</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15">Creando funciones anonimas</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Las funciones anonimas tienen la siguiente forma: <code>fn(&lt;parametro1&gt;, &lt;parametro2&gt;, ....) -&gt; &lt;ejecucion y retorno&gt; end</code>
+</p>
+
+<p>
+Crearemos funciones en IEx y las guardaremos en una variable para posteriormente utilizarlas:
+</p>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex&gt; velocidad = fn (distancia) -&gt; :math.sqrt(2 * 9.81 * distancia) end
+#Function&lt;6.52032458/1 in :erl_eval.expr/5&gt;
+## El retorno nos sirve para corroborrar que hemos creado una funcion y 
+## no resulto en error.
+iex&gt; sum = fn (a, b) -&gt; a + b end
+#Function&lt;12.17052888 in :erl_eval.expr/5&gt;
+iex&gt; sum.(1, 2)
+3
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">Evaluamos la función</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex&gt; velocidad = fn (distancia) -&gt; :math.sqrt(2 * 9.81 * distancia) end
+#Function&lt;6.52032458/1 in :erl_eval.expr/5&gt;
+iex&gt; velocidad.(3)
+7.672027111526653
+iex&gt; sum = fn (a, b) -&gt; a + b end
+#Function&lt;12.17052888 in :erl_eval.expr/5&gt;
+iex&gt; sum.(1, 2)
+3
+</pre>
+
+</div>
+<p>
+Al ejecutar <code>velocidad.(3)</code>, un patron se matchea con la data suministrada. 
+</p>
+
+<p>
+En el ejemplo, el patron <code>distancia</code> se matchea con <code>3</code> (<code>distancia = 3</code>). Esto resulta en la asignacion de <code>3</code> a la variable <code>distancia</code>. 
+</p>
+
+<p>
+Para luego ser utilizada en la evaluacion <code>:math.sqrt(2 * 9.81 * distancia)</code>. 
+</p>
+
+<p>
+<code>:math.sqrt</code> toma la raiz cuadrada de la expresion.
+</p>
+
+<p>
+Nota: el <code>:math</code> es un modulo de Erlang. Usar atomos en minusculas nos sirve para llamar modulos de Erlang (sean modulos propio del lenguaje o mediante librerias).
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17">Funciones anonimas creadas en multiples Lineas</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Ahora podemos separar en piezas nuestras funciones dentro de multiples lineas, esto hace que sea más legible. IEx mantiene la linea abierta hasta que tipees <code>end</code>. El ejemplo anterior de esta manera:
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+##En este caso obviamos englobar en parentesis
+##los parametros porque solo existe uno solo.
+iex&gt; velocidad = fn 
+...&gt; distancia -&gt; :math.sqrt(2 * 9.81 * distancia)
+...&gt; end
+#Function&lt;6.52032458/1 in :erl_eval.expr/5&gt;
+iex&gt; velocidad.(10)
+14.007141035914502
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18">Funciones Anonimas y Pattern Matching</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Como anterioremente explique, cada vez que evaluamos una funcion anonima, un patron se matchea con la data suministrada, de lo cual deriva en asignaciones, para que luego sean utilizadas. Esto significa que se puede hacer matcheos de mayor complejidad
+Ejemplos:
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+##En este caso se esta pasando un solo parametro que es una tupla y se esta devolviendo otra tupla con el orden invertido.
+iex&gt; intercambio = fn 
+...&gt; {primero, segundo} -&gt; {segundo, primero}
+...&gt; end
+#Function&lt;6.52032458/1 in :erl_eval.expr/5&gt;
+iex&gt; intercambio.({6, 8})
+{8, 6}
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19">Una funcion anonima, multiples cuerpos</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Para el siguiente ejemplo, en mi carpeta creo un archivo <code>holiwoli.txt</code> que no es necesario que tenga contenido.
+</p>
+
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/holiwoli.png" alt="holiwoli.png" width="650px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Ejecuto <code>iex</code> en la carpeta donde cree <code>holiwoli.txt</code> y ejecuto una que me intereza. Analizamos el uso de una funcion llamada <code>open</code>, dentro de la libreria <code>File</code>, que por defecto Elixir ya incorpora.
+</p>
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/file_open.png" alt="file_open.png" width="650px" />
+</p>
+</div>
+</article>
+<p>
+Al ejecutar la funcion, esta retorna una tupla, tal que su primer elemento es un atomo que representa el exito o fracaso de la operación, y el segundo es segun el primer termino, un identificador unico de proceso ó un mensaje de error.
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Ahora creamos una funcion anonima que procese ese resultado y dependiendo del caso hace una accion u otra.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex&gt; verificar_archivo = fn 
+...&gt; {:ok, archivo} -&gt; "Leyendo archivo: #{IO.read(archivo, :line)}"
+...&gt; {_, error}  -&gt; "Error: #{:file.format_error(error)}"
+...&gt; end
+#Function&lt;6.52032458/1 in :erl_eval.expr/5&gt;
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/verificar_archivo.png" alt="verificar_archivo.png" width="850px" />
+</p>
+</div>
+</article>
+<p>
+Lo que hace la función es verificar el primer primer patron que en este caso es <code>{:ok, archivo}</code>. Si consigue hacer el match <code>{:ok, archivo} = File.open(".......")</code> imprime el texto <code>Leyendo archivo: ........</code>, y si no matchea intentara hacer un nuevo match con <code>{_, error}</code> de la siguiente forma <code>{_, error} = File.open(".......")</code>, si logra hacer este ultimo match se imprimira el texto <code>Error: ..........</code>
+</p>
+
+<p>
+Significa que importa el orden indicado de los patrones.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline27" class="outline-2">
+<h2 id="orgheadline27">Shortcut &amp;</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Hemos observador hasta el momento que para crear una funcion anonima es necesario definir 2 partes importantes:
+</p>
+<ul>
+<li>El patron</li>
+<li>El contenido que ejecuta</li>
+</ul>
+<p>
+Ahora, existe algo más practico que toma en concideracion el orden de los parametros que se estan tomando. Eso más practico es el uso de <code>&amp;</code> para definir funciones anonimas. 
+</p>
+
+<p>
+Aqui un ejemplo en la forma como se utilizan.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex&gt; doble = &amp;(&amp;1 * 2)
+#Function&lt;6.52032458/1 in :erl_eval.expr/5&gt;
+iex&gt; doble.(7)
+14
+</pre>
+
+</div>
+<p>
+<code>&amp;(...)</code> se refiere a la creacion de una funcion anonima. <code>&amp;1</code> representa el primer parametro obtenido al evaluar la funcion. Entonces <code>&amp;(&amp;1 * 2)</code> es una funcion anonima de aridad 1 que toma su primer parametro (primer y unico parametro) y devuelve el doble.
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+<code>&amp;(....)</code> tiene las siguientes variaciones:
+</p>
+<ul>
+<li><code>&amp;{....}</code>: Funcion anonima que crea una tupla como resultado</li>
+<li><code>&amp;[....]</code>: Funcion anonima que crea una lista como resultado</li>
+</ul>
+<p>
+Ejemplos:
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex&gt; cociente_residuo = &amp;{ div(&amp;1,&amp;2), rem(&amp;1,&amp;2) }
+#Function&lt;6.52032458/1 in :erl_eval.expr/5&gt;
+iex&gt; cociente_residuo.(13, 5)
+{2, 3}
+iex&gt; lista = &amp;[&amp;1, &amp;1 * 2, &amp;1 * 3]
+#Function&lt;6.52032458/1 in :erl_eval.expr/5&gt;
+iex&gt; lista.(5)
+[5, 10, 15]
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26">Usos de &amp;</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Sabemos que hace <code>&amp;(....)</code>, pero para que sirve?
+</p>
+
+<p>
+Sirve crear funciones anonimas que sirvan como parametros a otras funciones..
+</p>
+
+<p>
+Ejemplos:
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex&gt; Enum.map [1,2,3,4], &amp;(&amp;1 + 1)
+[2, 3, 4, 5]
+iex&gt; Enum.map [1,2,3,4], &amp;(&amp;1 * &amp;1)
+[1, 4, 9, 16]
+iex&gt; Enum.map [1,2,3,4], &amp;(&amp;1 &lt; 3)
+[true, true, false, false]
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline38" class="outline-2">
+<h2 id="orgheadline38">Modulos</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28">Qué es un Modulo?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Una vez que tu codigo crece, es una necesidad real estructuralo. Partes tu codigo en funciones con nombre y los organizas dentro de modulos.
+</p>
+
+<p>
+Los modulos te dan la habilidad de guardar, encapsular, compartir y manejar tu codigo de la manera más eficiente.
+</p>
+
+<p>
+Cada modulo tiene extension <code>.ex</code> ó <code>.exs</code> (<code>.ex</code> es para archivos que sera compilados y <code>.exs</code> son para crear scripts ó mejor dicho archivos que se interpretan en beam pero que no es necesario que se compilen).
+</p>
+
+<p>
+Nota: Nombres de Archivos que representen modulos siempre estaran en minusculas. Es una convencion que se respeta.
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29">Creando nuestro primer modulo</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Creamos el archivo <code>caida.exs</code> dentro de nuestra carpeta y con el editor de texto escribimos lo siguiente:
+</p>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#Archivo: caida.exs
+defmodule Caida do
+  def velocidad(altura) do
+    :math.sqrt(2 * 9.81 * altura)
+  end
+end
+</pre>
+
+</div>
+<p>
+En el codigo escrito podemos ver que existe un modulo <code>Caida</code>, tal que engloba entre <code>do ...... end</code> a una funcion con nombre <code>velocidad</code>. Esta funcion <code>velocidad</code>, recibe un parametro <code>altura</code>, que al ser evaluada se matchea para luego ejecutarse el contenido entre <code>do ... end</code> que es <code>:math.sqrt(2 * 9.81 * altura)</code>
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30">Cargando nuestro codigo en consola</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Existen 2 formas de usar el codigo en archivos.
+</p>
+<ul>
+<li>Ejecutando <code>iex &lt;nombre de archivo&gt;</code> para luego ejecutarlo</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="cmd">
+$ iex caida.exs
+iex&gt; Caida.velocidad(100)
+44.294469180700204
+</pre>
+
+</div>
+<ul>
+<li>Estando en iex, ejecutamos <code>c &lt;"nombre de archivo"&gt;</code></li>
+</ul>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex&gt; c "caida.exs"
+[Caida]
+iex&gt; Caida.velocidad(100)
+44.294469180700204
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31">Patten Matching en funciones con nombre</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+En funciones anonimas teniamos la posibilidad de crear multiples cuerpos ó por decirlo de otra forma, que la funcion responda segun los parametros de entrada.
+</p>
+
+<p>
+Lo mismo tenemos en funciones con nombres.
+</p>
+
+<p>
+Ejemplo:
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#factorial.exs
+defmodule Factorial do
+  def de(0), do: 1
+  def de(n), do: n * de(n-1)
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline32" class="outline-3">
+<h3 id="orgheadline32"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#factorial.exs
+defmodule Factorial do
+  def de(0), do: 1
+  def de(n), do: n * de(n-1)
+end
+</pre>
+
+</div>
+<p>
+Cuando el parametro es 0, el resultado es 1.
+</p>
+
+<p>
+Cuando el parametro no es 0, almacenamos el parametro de entrada en la variable <code>n</code> y luego evaluamos <code>n</code> por el factorial de <code>n</code> menos 1.
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#factorial1.exs
+iex&gt; c "factorial.exs"
+[Factorial]
+iex&gt; Factorial.de(3)
+6
+iex&gt; Factorial.de(7)
+5040
+iex&gt; Factorial.de(10)
+3628800
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34">Otro ejemplo</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#fibo.exs
+defmodule Fibonacci do
+  def de(0), do: 0
+
+  def de(1), do: 1
+
+  def de(n) do
+    de(n-1) + de(n-2)
+  end
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline35" class="outline-3">
+<h3 id="orgheadline35">Guard Clauses</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+<code>when</code> nos ayuda a verificar los tipos de las variables que hacen match.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#lista_numero.exs
+defmodule ListaNumero do
+  def que_es(x) when is_number(x) do
+    "#{x} es un numero"
+  end
+  def que_es(x) when is_list(x) do
+    "#{inspect(x)} es una lista"
+  end
+end
+</pre>
+
+</div>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex&gt; c "lista_numero.exs"
+[ListaNumero]
+iex&gt; ListaNumero.que_es(5)
+"5 es un numero"
+iex&gt; ListaNumero.que_es([5])
+"[5] es una lista"
+</pre>
+
+</div>
+<p>
+LIMITACIONES: Solo estan permitidas estas <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses">Funciones</a> dentro de <code>when</code>.
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36">Pipe Operator |&gt;</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Que pasa si queremos elevar al cuadrado los elementos de una lista para luego filtrar a los que sean menores a 40. Tendriamos que usar la siguiente funcion:
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex&gt; lista = 1..10
+1..10
+iex&gt; cuadrado = Enum.map(lista, &amp;(&amp;1 * &amp;1))
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+iex&gt; filtrado = Enum.filter(cuadrado, &amp;(&amp;1 &lt; 40))
+[1, 4, 9, 16, 25, 36]
+</pre>
+
+</div>
+<p>
+Entendemos este codigo, pero almacenamos muchas variables temporales inscribles que ocupan recursos.
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline37" class="outline-3">
+<h3 id="orgheadline37">Pipe Operator |&gt;</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Ahora, si no queremos almacenar variables temporales podemos hacer lo siguiente:
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex&gt; filtrado = Enum.filter(Enum.map(1..10, &amp;(&amp;1 * &amp;1)), &amp;(&amp;1 &lt; 40))
+[1, 4, 9, 16, 25, 36]
+## Lo siento, por hacerles ver algo tan feo.
+</pre>
+
+</div>
+<p>
+Funciona, pero es dificil de leer y escalar, facilmente puede ocasionar errores. No es elegante.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline41" class="outline-2">
+<h2 id="orgheadline41"></h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Muchos lenguajes nos obligan a tomar una decision sobre cual usar. Ser poco productivo pero hacer codigo eficiente ó ser productivo pero tu codigo es ineficiente.
+calma.jpg
+</p>
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/calma.jpg" alt="calma.jpg" width="600px" />
+</p>
+</div>
+</article>
+
+
+</article>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline39" class="outline-3">
+<h3 id="orgheadline39"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Siganme los buenos.
+</p>
+
+<p>
+Una solucion elegante es pensar en funciones como transformaciones de información. Tal que el primer parametro de una funcion es el elemento a transformar, y los demas parametros son configuraciones a la transformación que se da.
+</p>
+
+<p>
+Resumiendo en una sola linea. En ves de usar f(val,a,b), usamos val |&gt; f(a,b). 
+</p>
+
+<p>
+Aplicando a nuestro ejemplo.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex&gt; resultado = 1..10 |&gt; Enum.map(&amp;(&amp;1*&amp;1)) |&gt; Enum.filter(&amp;(&amp;1 &lt; 40))
+[1, 4, 9, 16, 25, 36]
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline40" class="outline-3">
+<h3 id="orgheadline40"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/mi_astucia.jpg" alt="mi_astucia.jpg" width="450px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline48" class="outline-2">
+<h2 id="orgheadline48">Mix</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline42" class="outline-3">
+<h3 id="orgheadline42">Qué es Mix?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Mix es una herramienta que mediante linea de comandos maneja projectos Elixir. 
+</p>
+
+<p>
+Mix es usado para crear nuevos proyectos, manejar dependencias, ejecutar pruebas, ejecutar tu proyecto.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline43" class="outline-3">
+<h3 id="orgheadline43">Creando nuestro primer proyecto</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Creamos nuestro primer proyecto Elixir usando el comando <code>mix new holi</code>
+</p>
+
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/new_project.png" alt="new_project.png" width="450px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline44" class="outline-3">
+<h3 id="orgheadline44"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Ahora observamos la siguiente estructura de archivos:
+</p>
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/folder.png" alt="folder.png" width="250px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline45" class="outline-3">
+<h3 id="orgheadline45">Estructura</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<ul>
+<li><code>README.md</code>: Archivo Markdown que es usado para indicar requisitos y procedimientos para cuando otras personas usen nuestro proyecto, en especial cuando publiquemos nuestro proyecto como libreria.</li>
+<li><code>mix.exs</code>: Archivo que define el nombre de nuestro proyecto, la version, las dependencias, las librerias que funcionaran en su propio proceso, etc.</li>
+<li><code>.gitignore</code>: Archivo usado para manejar que archivos no seran trackeados por git (control de versiones).</li>
+<li>Carpeta <code>test</code>: Contendra codigo util para hacer testing.</li>
+<li>Carpeta "lib": Contendra la mayoria del codigo de nuestra aplicación.
+<ul>
+<li>Archivo <code>holi.ex</code>: Archivo con el nombre de nuestro proyecto. Modulo que representa nuestra aplicación.</li>
+</ul></li>
+<li>Carpeta <code>config</code>: Contiene configuraciones de nuestra aplicación.</li>
+</ul>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline46" class="outline-3">
+<h3 id="orgheadline46">Holi Woli</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Elixir tiene una convención. Dentro de la carpeta <code>/lib</code>, debes crear otra carpeta con el mismo nombre del proyecto. Aqui escribiremos nuestro codigo. El archivo <code>holi.exs</code> nos servira cuando trabajemos con OTP. 
+</p>
+
+<p>
+Por tanto en la carpeta <code>lib/holi/</code> crearemos nuestro primer modulo junto con una función:
+</p>
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/holi.png" alt="holi.png" width="550px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline47" class="outline-3">
+<h3 id="orgheadline47"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Cargamos nuestro proyecto a iex para poder usarlo dentro de la shell con el comando <code>iex -S mix</code>
+</p>
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/iex_-S_mix.png" alt="iex_-S_mix.png" width="550px" />
+</p>
+</div>
+</article>
+<p>
+Observamos que adicional al clasico inicio de sesion, iex nos informa que se compilaron 2 archivos y que se genero la aplicacion holi.
+Ahora, al ejecutar la función <code>Holi.Woli.saludo</code>, este devolvera un string <code>Hola Amiguitos xD</code>. Ademas notaremos que se creo una carpeta <code>build</code> donde estaran todos los archivos compilados de nuestra aplicación.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline54" class="outline-2">
+<h2 id="orgheadline54">Testing</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline49" class="outline-3">
+<h3 id="orgheadline49">Intro a Testing</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>Tests son codigos que verifican que el codigo de tu proyecto funciones correctamente.</li>
+<li>Elixir tiene una fuerte cultura de testing.</li>
+<li>ExUnit es la herramienta más usada para testing.</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline50" class="outline-3">
+<h3 id="orgheadline50">Anatomia Exunit test</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/testing.png" alt="testing.png" width="550px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline51" class="outline-3">
+<h3 id="orgheadline51">Ejecutando un testing</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Ejecuta <code>mix test</code>, aparecera el estado de las pruebas y si existe alguna falla mostrara información de donde existe la falla.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline52" class="outline-3">
+<h3 id="orgheadline52">Ejercicio</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+<a href="https://www.codewars.com/kata/tribonacci-sequence">Tribonacci</a>
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#lib/holi/secuencia_tribonacci.ex
+defmodule Holi.SecuanciaTribonacci do
+  @spec tribonacci({number, number, number}, non_neg_integer) :: [number]
+  def tribonacci(signature, n) do
+    # your code here
+  end
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline53" class="outline-3">
+<h3 id="orgheadline53">Ejercicio Test</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#lib/holi/secuencia_tribonacci.ex
+defmodule HoliTest do
+  use ExUnit.Case
+  import Holi.SecuanciaTribonacci, only: [tribonacci: 2]
+
+  doctest Holi
+
+  test "the truth" do
+    assert 1 + 1 == 2
+  end
+
+  test "Basic tests" do
+    assert tribonacci({1, 1, 1}, 10) == [1,1,1,3,5,9,17,31,57,105]
+    assert tribonacci({0, 0, 1}, 10) == [0,0,1,1,2,4,7,13,24,44]
+    assert tribonacci({0, 1, 1}, 10) == [0,1,1,2,4,7,13,24,44,81]
+    assert tribonacci({1, 0, 0}, 10) == [1,0,0,1,1,2,4,7,13,24]
+    assert tribonacci({0, 0, 0}, 10) == [0,0,0,0,0,0,0,0,0,0]
+    assert tribonacci({1, 2, 3}, 10) == [1,2,3,6,11,20,37,68,125,230]
+    assert tribonacci({3, 2, 1}, 10) == [3,2,1,6,9,16,31,56,103,190]
+    assert tribonacci({1, 1, 1}, 1) == [1]
+    assert tribonacci({300, 200, 100}, 0) == []
+    assert tribonacci({0.5, 0.5, 0.5}, 30) == [0.5,0.5,0.5,1.5,2.5,4.5,8.5,15.5,28.5,52.5,96.5,177.5,326.5,600.5,1104.5,2031.5,3736.5,6872.5,12640.5,23249.5,42762.5,78652.5,144664.5,266079.5,489396.5,900140.5,1655616.5,3045153.5,5600910.5,10301680.5]
+  end
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline55" class="outline-2">
+<h2 id="orgheadline55"><a href="https://www.codewars.com/?language=elixir">Have Fun</a></h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" thank-you-slide segue nobackground" style="background-image: url(nil)">
+<aside class="gdbar right"><img src="images/elixir.png"></aside><article class="flexbox vleft auto-fadein" id="text-">
+<h2>
+  <p>Gracias ˊ・ω・ˋ</p>
+</h2>
+<br>
+<p class="auto-fadein" data-config-contact>
+</p>
+</article>
+
+</slide>
+<slide class="backdrop"></slide>
+</slides> 
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body> 
+
+</html>
