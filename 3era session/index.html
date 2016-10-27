@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<!-- 2016-10-27 jue 05:39 -->
+<meta  charset="utf-8" />
+<meta  htto-equiv="X-UA-Compatible" content="chrome=1" />
+<meta  name="generator" content="Org-mode with org-ioslide" />
+<meta  name="author" content="Albert Castellano Moreno" />
+
+
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--This one seems to work all the time, but really small on ipad-->
+<!--<meta name="viewport" content="initial-scale=0.4">-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="stylesheet" media="all" href="theme/css/default.css" />
+<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css" />
+<link rel="stylesheet" media="all" href="theme/css/small-icon.css" />
+<base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+<script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+
+   <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+<script src="js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML,local/local" type="text/javascript"></script>
+</head>
+<body style="opacity: 0">
+<slides class="layout-widescreen">
+<slide class="title-slide segue nobackground">
+       <aside class="gdbar"><img src="images/elixir.png"></aside>
+       <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+       <hgroup class="auto-fadein">
+         <h1 data-config-title><!-- populated from slide_config.json --></h1>
+         <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+         <p data-config-presenter><!-- populated from slide_config.json --></p>
+       </hgroup>
+    </slide>
+  
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Contenido</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">Contenido</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>OTP
+<ul>
+<li>Genserver</li>
+<li>Supervisor</li>
+</ul></li>
+<li>Plug</li>
+<li>Phoenix</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">Open Telephony Protocol (OTP)</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Qué es OTP?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Es un framework de Erlang creado para construir sistemas distribuidos.
+</p>
+
+<p>
+Inicialmente se utilizó para construir centrales telefónicas y conmutadores.
+</p>
+
+<p>
+Sin embargo, estos dispositivos tienen las mismas caracteristicas que queremos para crear grandes aplicaciones online, asi que ahora OTP es una herramienta de proposito general para desarrollar y manejar grandes sistemas.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">OTP: Application</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+OTP define sistemas en terminos de jerarquias de aplicaciones. 
+</p>
+
+<blockquote>
+<p>
+一In OTP, application denotes a component implementing some specific functionality, that can be started and stopped as a unit, and which can be re-used in other systems as well.
+</p>
+
+<p>
+<span class='float-right'>&#x2013; OTP Documentation</span><br  />
+</p>
+</blockquote>
+<p>
+Una aplicacion consiste en uno o más procesos. Cada uno de los procesos sigue uno de las pocas convenciones de OTP llamadas <code>behaviors</code>. Hay un <code>behavior</code> para implementar servidores de proposito general, otro para manejar eventos, etc.
+</p>
+
+<p>
+<code>Beam</code>, que es la maquina virtual donde Erlang y Elixir se ejecutan, puede ser vista como un sistema operativo. Donde cada programa en este sistema operativo es una aplicación. Los proyectos seran en realidad un conjunto de aplicaciones que usaran aplicaciones del mismo sistema operativo o de aplicaciones externas.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6">Proyectos Mix son OTP Apps</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15">Behavior GenServer</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+<p>
+Procesos que tienen estados y a los cuales se les hace consultas.
+</p>
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7">GenServer</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Behaviors declaran que funciones deben estar implementadas en un modulo.
+</p>
+
+<p>
+Por terminal, nos ubicamos en una carpeta (en mi caso sera <code>dev</code>) y ejecutamos <code>mix new secuencia</code>.
+</p>
+
+<p>
+Se creara un proyecto mix. Ingresamos a la siguiente ruta <code>secuencia/lib</code> para crear una nueva carpeta con nombre <code>secuencia</code>.
+</p>
+
+<p>
+En esta carpeta creada escribiremos el siguiente codigo:
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#lib/secuencia/servidor_generico.ex
+defmodule Secuencia.ServidorGenerico do
+  use GenServer
+
+  def handle_call(:siguiente_numero, _from, estado_actual) do
+    { :reply, estado_actual+1, estado_actual + 1 }
+  end
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">GenServer</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+<code>handle_call</code> recibe 3 parametros:
+</p>
+<ul>
+<li>la informacion enviada por el cliente como primer parametro.</li>
+<li>el PID del cliente como segundo parametro</li>
+<li>el actual estado del servidor como tercer parametro</li>
+</ul>
+
+<p>
+y devuelve una tupla con el siguiente contenido:
+</p>
+<ul>
+<li><code>:reply</code> como primer elemento indica a OTP que se dara una respuesta al cliente</li>
+<li>la respuesta al cliente es el segundo elemento de la tupla</li>
+<li>el nuevo estado del servidor como tercer elemento</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">What? Esto que hace?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Ejecutemos: 
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+$ iex -S mix
+iex&gt; { :ok, pid } = GenServer.start_link(Secuencia.ServidorGenerico, 100)
+{:ok,#PID&lt;0.71.0&gt;}
+iex&gt; GenServer.call(pid, :siguiente_numero)
+101
+iex&gt; GenServer.call(pid, :siguiente_numero)
+102
+iex&gt; GenServer.call(pid, :siguiente_numero)
+103
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">Ahora quiero que pasen cosas con el estado pero que GenServer no responda</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#lib/secuencia/servidor_generico.ex
+defmodule Secuencia.ServidorGenerico do
+  use GenServer
+
+  def handle_call(:siguiente_numero, _from, estado_actual) do
+    { :reply, estado_actual, estado_actual + 1 }
+  end
+
+  <b>def handle_cast({:incrementar_estado, delta}, estado_actual) do
+    { :noreply, estado_actual + delta}
+  end</b>
+end
+</pre>
+
+</div>
+<p>
+<code>handle_cast</code> recibe 2 parametros: la información enviada por el cliente y el estado actual. Retorna una tupla que contiene <code>:noreply</code> como primer elemento que indica que no es necesario respuesta alguna y como segundo elemento el nuevo estado del servidor.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11">Probamos</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+## Recompilamos
+iex&gt; r Secuencia.ServidorGenerico
+...........
+iex&gt; { :ok, pid } = GenServer.start_link(Secuencia.ServidorGenerico, 100)
+{:ok,#PID&lt;0.60.0&gt;}
+iex&gt; GenServer.call(pid, :siguiente_numero)
+101
+iex&gt; GenServer.call(pid, :siguiente_numero)
+102
+iex&gt; GenServer.cast(pid, {:incrementar_estado, 200})
+:ok
+iex&gt; GenServer.call(pid, :siguiente_numero)
+303
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+muy feo estar usando Genserver a cada rato
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#lib/secuencia/servidor_generico.ex
+defmodule Secuencia.ServidorGenerico do
+  use GenServer
+
+  <b>def start_link(estado_inicial) do
+    GenServer.start_link(__MODULE__, estado_inicial, name: __MODULE__)
+  end
+
+  def siguiente_numero do
+    GenServer.call __MODULE__, :siguiente_numero
+  end
+
+  def incrementar_estado(delta) do
+    GenServer.cast __MODULE__, {:incrementar_estado, delta}
+  end</b>
+
+  def handle_call(:siguiente_numero, _from, estado_actual) do
+    { :reply, estado_actual+1, estado_actual + 1 }
+  end
+
+  def handle_cast({:incrementar_estado, delta}, estado_actual) do
+    { :noreply, estado_actual + delta}
+  end
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13">Probamos la API creada</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+$ iex -S mix
+iex&gt; Secuencia.ServidorGenerico.start_link 123
+{:ok,#PID&lt;0.57.0&gt;}
+iex&gt; Secuencia.ServidorGenerico.siguiente_numero
+124
+iex&gt; Secuencia.ServidorGenerico.siguiente_numero
+125
+iex&gt; Secuencia.ServidorGenerico.incrementar_estado 100
+:ok
+iex&gt; Secuencia.ServidorGenerico.siguiente_numero
+226
+iex&gt; Secuencia.ServidorGenerico.incrementar_estado "holi"
+<b>##El proceso muere y no se recupera</b>
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14">Demo</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Creando un genserver que con una funcion guarde valores y que con otra recupere el ultimo valor guardado.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline27" class="outline-2">
+<h2 id="orgheadline27">Behavior Supervisor</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+<p>
+No te preocupes mucho del codigo que genera fallos, preocupate que la aplicación siga funcionando.
+</p>
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">Generando una aplicación supervisora</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Ejecutamos el siguiente comando <code>mix new --sup super</code> y abrimos el archivo <code>/super/lib/super.ex</code>
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+defmodule Super do
+  use Application
+
+  # See http://elixir-lang.org/docs/stable/elixir/Application.html
+  # for more information on OTP Applications
+  def start(_type, _args) do
+    import Supervisor.Spec, warn: false
+
+    # Define workers and child supervisors to be supervised
+    children = [
+      # Starts a worker by calling: Super.Worker.start_link(arg1, arg2, arg3)
+      # worker(Super.Worker, [arg1, arg2, arg3]),
+    ]
+
+    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
+    # for other strategies and supported options
+    opts = [strategy: :one_for_one, name: Super.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Creamos el archivo <code>lib/super/servidor_generico.ex</code>, <code>similar</code> a lo hecho en genserver.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+defmodule <b>Super</b>.ServidorGenerico do
+  use GenServer
+
+  def start_link(estado_inicial) do
+    GenServer.start_link(__MODULE__, estado_inicial, name: __MODULE__)
+  end
+
+  def siguiente_numero do
+    GenServer.call __MODULE__, :siguiente_numero
+  end
+
+  def incrementar_estado(delta) do
+    GenServer.cast __MODULE__, {:incrementar_estado, delta}
+  end
+
+  def handle_call(:siguiente_numero, _from, estado_actual) do
+    { :reply, estado_actual+1, estado_actual + 1 }
+  end
+
+  def handle_cast({:incrementar_estado, delta}, estado_actual) do
+    { :noreply, estado_actual + delta}
+  end
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Modificamos <code>/super/lib/super.ex</code> para que inicie <code>servidor_generico</code>
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+defmodule Super do
+  use Application
+
+  # See http://elixir-lang.org/docs/stable/elixir/Application.html
+  # for more information on OTP Applications
+  def start(_type, _args) do
+    import Supervisor.Spec, warn: false
+
+    # Define workers and child supervisors to be supervised
+    children = [
+      # Starts a worker by calling: Super.Worker.start_link(arg1, arg2, arg3)
+      # worker(Super.Worker, [arg1, arg2, arg3]),
+      <b>worker(Super.ServidorGenerico, [123])</b>
+    ]
+
+    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
+    # for other strategies and supported options
+    opts = [strategy: :one_for_one, name: Super.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19">Listo, ya tenemos todo listo para ejecutar</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+$ iex -S mix
+iex(1)&gt; Super.ServidorGenerico.siguiente_numero    
+124
+iex(2)&gt; Super.ServidorGenerico.siguiente_numero
+125
+iex(3)&gt; Super.ServidorGenerico.incrementar_estado 10
+:ok
+iex(4)&gt; Super.ServidorGenerico.siguiente_numero     
+136
+iex(5)&gt; Super.ServidorGenerico.incrementar_estado "holi"
+##El procesos muere pero renace
+iex(6)&gt; Super.ServidorGenerico.siguiente_numero         
+124
+</pre>
+
+</div>
+<p>
+Ups. EL proceso fallece y se recupera pero el estado no se mantiene.
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20">Manteniendo estados entre reinicios</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/super.png" alt="super.png" width="350px" />
+</p>
+</div>
+</article>
+<p>
+Fuente: Esta en el libro "programming-elixir 1.2" (pag 221).
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Creo el modulo encargado de manejar el estado ante fallas.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#/super/lib/super/estado.ex
+defmodule Super.Estado do
+  use GenServer
+  #####
+  # API Externa
+  def start_link(estado_inicial) do
+    GenServer.start_link(__MODULE__, estado_inicial, name: __MODULE__)
+  end
+  def guardar_estado(nuevo_valor) do
+    GenServer.cast __MODULE__, {:guardar_estado, nuevo_valor}
+  end
+  def obtener_estado(pid) do
+    GenServer.call __MODULE__, :obtener_estado
+  end
+  #####
+  # Implementacion GenServer
+  def handle_call(:obtener_estado, _from, estado_actual) do
+    {:reply, estado_actual, estado_actual}
+  end
+  def handle_cast({:guardar_estado, nuevo_valor}, _estado_actual) do
+    {:noreply, nuevo_valor}
+  end
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22">Creo un <code>sub_supervisor</code></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#/super/lib/super/sub_supervisor.ex
+defmodule Super.SubSupervisor do
+  use Supervisor
+
+  def start_link() do
+    Supervisor.start_link(__MODULE__, [], name: __MODULE__)
+  end
+
+  def init([]) do
+    children = [
+      worker(Super.SubSupervisor.ServidorGenerico, [])
+    ]
+
+    # supervise/2 is imported from Supervisor.Spec
+    supervise(children, strategy: :one_for_one)
+  end
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#/super/lib/super/sub_supervisor/servidor_generico.ex
+defmodule Super.SubSupervisor.ServidorGenerico do
+  use GenServer
+  def start_link() do
+    GenServer.start_link(__MODULE__, [], name: __MODULE__)
+  end
+  <b>def init([]) do
+    {:ok, Super.Estado.obtener_estado()}
+  end</b>
+  def siguiente_numero do
+    GenServer.call __MODULE__, :siguiente_numero
+  end
+  def incrementar_estado(delta) do
+    GenServer.cast __MODULE__, {:incrementar_estado, delta}
+  end
+  def handle_call(:siguiente_numero, _from, estado_actual) do
+    { :reply, estado_actual+1, estado_actual + 1 }
+  end
+  def handle_cast({:incrementar_estado, delta}, estado_actual) do
+    { :noreply, estado_actual + delta}
+  end
+  <b>def terminate(_reason, estado_antes_de_fallo) do
+    Super.Estado.guardar_estado(estado_antes_de_fallo)
+  end</b>
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Añado los procesos <code>sub_supervisor</code> y <code>estado</code> a la aplicación:
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#/super/lib/super.ex
+defmodule Super do
+  use Application
+
+  # See http://elixir-lang.org/docs/stable/elixir/Application.html
+  # for more information on OTP Applications
+  def start(_type, _args) do
+    import Supervisor.Spec, warn: false
+
+    # Define workers and child supervisors to be supervised
+    children = [
+      # Starts a worker by calling: Super.Worker.start_link(arg1, arg2, arg3)
+      # worker(Super.Worker, [arg1, arg2, arg3]),
+      <b>worker(Super.Estado, [123]),
+      supervisor(Super.SubSupervisor, [])</b>
+    ]
+
+    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
+    # for other strategies and supported options
+    opts = [strategy: :one_for_one, name: Super.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25">Ejecuto (se mantiene el estado aun con la falla)</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+iex(1)&gt; Super.SubSupervisor.ServidorGenerico.siguiente_numero
+124
+iex(2)&gt; Super.SubSupervisor.ServidorGenerico.siguiente_numero
+125
+iex(3)&gt; Super.SubSupervisor.ServidorGenerico.siguiente_numero
+126
+iex(4)&gt; Super.SubSupervisor.ServidorGenerico.incrementar_estado 7
+:ok
+iex(5)&gt; Super.SubSupervisor.ServidorGenerico.siguiente_numero    
+134
+iex(6)&gt; Super.SubSupervisor.ServidorGenerico.incrementar_estado "holi"
+##El procesos muere pero renace
+iex(7)&gt; Super.SubSupervisor.ServidorGenerico.siguiente_numero         
+135
+iex(8)&gt; :observer.start
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26">&lt;3</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/observer.png" alt="observer.png" width="750px" />
+</p>
+</div>
+</article>
+<p>
+Joe Armstrong dice OTP se ha utilizado para construir sistemas con 99.9999999% de fiabilidad. Eso son nueve nueves. Cool.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline28" class="outline-2">
+<h2 id="orgheadline28"><a href="https://github.com/acastemoreno/OTP_Elixir_Example_Makerlab">Codigo en Github</a></h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline37" class="outline-2">
+<h2 id="orgheadline37">Plug</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+<p>
+microframework.
+Phoenix esta hecho en base a plug
+</p>
+
+
+</article>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29">Comó funciona Plug?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Visitar una URL es como llamar a una función.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="http">
+http://  www.example.com   /    about-us         ?ref=google
+   |             |                 |                 |
+Protocol   Nombre de App   Nombre de Función     Argumentos
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/plug.png" alt="plug.png" width="200px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31">Request http</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="http">
+GET /about-us HTTP/1.1
+Host: www.example.com
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml...
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh;...
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline32" class="outline-3">
+<h3 id="orgheadline32">Plug Convierte esta data en</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+%Plug.Conn{
+  host: "www.example.com",
+  method: "GET",
+  path_info: ["about-us"],
+  request_path: "/about-us",
+  port: 80,
+  remote_ip: 127.0.0.1,
+  req_headers: [
+    {"accept", "text/html,application/xhtml+xml..."},
+    {"upgrade-insecure-requests", 1},
+    {"user-agent", "Mozilla/5.0 (Macintosh;..."},
+    {"accept-encoding", "gzip, deflate, sdch"},
+    {"accept-language", "en-US,en;q=0.8"},
+  ],
+  scheme: :http,
+  # ...
+}
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/plug_flujo.png" alt="plug_flujo.png" width="550px" />
+</p>
+</div>
+</article>
+<p>
+Plugs son funciones que toman un <code>conn</code> y retornan un <code>conn</code>
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34">Demo</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Ejecutamos el comando <code>mix new probando_plug</code> y añadimos las siguientes librerias a nuestro proyecto.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#mix.exs
+def deps do
+  [{:cowboy, "~&gt; 1.0.0"},
+   {:plug, "~&gt; 1.0"}]
+end
+</pre>
+
+</div>
+<p>
+declaramos tambien las aplicaciones otp que usaremos
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#mix.exs
+def application do
+  [applications: [:logger, :cowboy, :plug]]
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline35" class="outline-3">
+<h3 id="orgheadline35"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Para descargar las librerias usamos <code>mix deps.get</code> para luego crear el siguiente modulo
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#/lib/probando_plug.ex
+defmodule ProbandoPlug do
+  import Plug.Conn
+
+  def init(options), do: options
+
+  def call(conn, _opts) do
+    conn
+    |&gt; put_resp_content_type("text/plain")
+    |&gt; send_resp(200, "Hola Amiguitos")
+  end
+end
+</pre>
+
+</div>
+<p>
+Ejecutamos de la siguiente manera:
+</p>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+# iex -S mix
+iex&gt; {:ok, _} = Plug.Adapters.Cowboy.http ProbandoPlug, []
+{:ok, #PID&lt;0.175.0&gt;}
+</pre>
+
+</div>
+<p>
+Ahora revisa la pagina <a href="http://localhost:4000/">http://localhost:4000/</a>
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Es necesario más de un plug:
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#/lib/probando_plug.ex
+defmodule ProbandoPlug do
+  use Plug.Router
+
+  plug :match
+  plug :dispatch
+
+  get "/holi" do
+    conn
+    |&gt; put_resp_content_type("text/plain")
+    |&gt; send_resp(200, "Holi Woli")
+  end
+
+  match _ do
+    send_resp(conn, 404, "Not Found")
+  end
+end
+</pre>
+
+</div>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+$ iex -S mix
+iex&gt; {:ok, _} = Plug.Adapters.Cowboy.http ProbandoPlug, []
+{:ok, #PID&lt;0.175.0&gt;}
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline39" class="outline-2">
+<h2 id="orgheadline39">Plug + OTP = Phoenix &lt;3</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+<p>
+Plug es 10% más rapido que Phoenix. Concidera usarlo si necesitas la maxima velocidad posible.
+</p>
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline38" class="outline-3">
+<h3 id="orgheadline38"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+<a href="https://gist.github.com/omnibs/e5e72b31e6bd25caf39a">Comparative Benchmark Numbers @ Rackspace &lt;3</a>
+</p>
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/Benchmark.png" alt="Benchmark.png" width="550px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/elixir.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline41" class="outline-2">
+<h2 id="orgheadline41">Phoenix &lt;3</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline40" class="outline-3">
+<h3 id="orgheadline40">Instalación</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+<a href="http://www.phoenixframework.org/docs/installation">Requerimientos</a>: (por ahora solo elixir es necesario)
+</p>
+<ul>
+<li>Elixir</li>
+<li>PostgreSql</li>
+<li>Node (se encargara de contruir archivo estaticos, es bueno para eso)</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="cmd">
+$ mix local.hex
+$ mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+# Creando nuevo proyecto
+$ mix phoenix.new hello_phoenix --no-brunch --no-ecto
+$ cd hello_phoenix
+$ mix phoenix.server
+# Enjoy localhost:4000
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+</slide>
+<slide id="sec-" class=" thank-you-slide segue nobackground" style="background-image: url(nil)">
+<aside class="gdbar right"><img src="images/elixir.png"></aside><article class="flexbox vleft auto-fadein" id="text-">
+<h2>
+  <p>Gracias ˊ・ω・ˋ</p>
+</h2>
+<br>
+<p class="auto-fadein" data-config-contact>
+</p>
+</article>
+
+</slide>
+<slide class="backdrop"></slide>
+</slides> 
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body> 
+
+</html>
