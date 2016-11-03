@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<!-- 2016-11-03 jue 02:23 -->
+<meta  charset="utf-8" />
+<meta  htto-equiv="X-UA-Compatible" content="chrome=1" />
+<meta  name="generator" content="Org-mode with org-ioslide" />
+<meta  name="author" content="Albert Castellano Moreno" />
+
+
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--This one seems to work all the time, but really small on ipad-->
+<!--<meta name="viewport" content="initial-scale=0.4">-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="stylesheet" media="all" href="theme/css/default.css" />
+<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css" />
+<link rel="stylesheet" media="all" href="theme/css/small-icon.css" />
+<base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+<script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+
+   <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+<script src="js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML,local/local" type="text/javascript"></script>
+</head>
+<body style="opacity: 0">
+<slides class="layout-widescreen">
+<slide class="title-slide segue nobackground">
+       <aside class="gdbar"><img src="images/phoenix.svg"></aside>
+       <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+       <hgroup class="auto-fadein">
+         <h1 data-config-title><!-- populated from slide_config.json --></h1>
+         <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+         <p data-config-presenter><!-- populated from slide_config.json --></p>
+       </hgroup>
+    </slide>
+  
+<slide id="sec-" class="fill white nobackground" style="background-image: url(images/phoenix.gif)">
+<hgroup class="">
+       <h2 class="white "><div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"></h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">Contenido</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>OTP</li>
+<li>Plug</li>
+<li>Phoenix</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/phoenix.svg"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6">Open Telephony Protocol (OTP)</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Qué es OTP?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Es un framework de Erlang creado para construir sistemas distribuidos.
+</p>
+
+<p>
+Inicialmente se utilizó para construir centrales telefónicas y conmutadores.
+</p>
+
+<p>
+Sin embargo, estos dispositivos tienen las mismas caracteristicas que queremos para crear grandes aplicaciones online, asi que ahora OTP es una herramienta de proposito general para desarrollar y manejar grandes sistemas.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">OTP: Application</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+OTP define sistemas en terminos de jerarquias de aplicaciones. 
+</p>
+
+<blockquote>
+<p>
+一In OTP, application denotes a component implementing some specific functionality, that can be started and stopped as a unit, and which can be re-used in other systems as well.
+</p>
+
+<p>
+<span class='float-right'>&#x2013; OTP Documentation</span><br  />
+</p>
+</blockquote>
+<p>
+Una aplicacion consiste en uno o más procesos. Cada uno de los procesos sigue uno de las pocas convenciones de OTP llamadas <code>behaviors</code>. Hay un <code>behavior</code> para implementar servidores de proposito general, otro para manejar eventos, etc.
+</p>
+
+<p>
+<code>Beam</code>, que es la maquina virtual donde Erlang y Elixir se ejecutan, puede ser vista como un sistema operativo. Donde cada programa en este sistema operativo es una aplicación. Los proyectos seran en realidad un conjunto de aplicaciones que usaran aplicaciones del mismo sistema operativo o de aplicaciones externas.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">Why OTP?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="larger" id="text-">
+<p>
+Joe Armstrong dice OTP se ha utilizado para construir sistemas con 99.9999999% de fiabilidad. Eso son nueve nueves.
+</p>
+
+<p>
+Confiabilidad 99.9999999% equivalente a 1 segundo de inactividad cada 32 años. Cool.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/phoenix.svg"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9">Proyectos Mix son OTP Apps</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7">OTP ~= Modelo actor</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/super.png" alt="super.png" width="350px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-" class="fill white nobackground" style="background-image: url(images/modelo_actor.png)">
+<hgroup class="">
+       <h2 class="white "><div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">OTP ~= Modelo actor</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/phoenix.svg"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18">Plug</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+<p>
+microframework
+</p>
+
+
+</article>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">Comó funciona Plug?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Visitar una URL es como llamar a una función.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="http">
+http://  www.example.com   /    about-us         ?ref=google
+   |             |                 |                 |
+Protocol   Nombre de App   Nombre de Función     Argumentos
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/plug.png" alt="plug.png" width="200px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12">Request http</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="http">
+GET /about-us HTTP/1.1
+Host: www.example.com
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml...
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh;...
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13">Plug Convierte esta data en</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+%Plug.Conn{
+  host: "www.example.com",
+  method: "GET",
+  path_info: ["about-us"],
+  request_path: "/about-us",
+  port: 80,
+  remote_ip: 127.0.0.1,
+  req_headers: [
+    {"accept", "text/html,application/xhtml+xml..."},
+    {"upgrade-insecure-requests", 1},
+    {"user-agent", "Mozilla/5.0 (Macintosh;..."},
+    {"accept-encoding", "gzip, deflate, sdch"},
+    {"accept-language", "en-US,en;q=0.8"},
+  ],
+  scheme: :http,
+  # ...
+}
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/plug_flujo.png" alt="plug_flujo.png" width="550px" />
+</p>
+</div>
+</article>
+<p>
+Plugs son funciones que toman un <code>conn</code> y retornan un <code>conn</code>
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15">Demo</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Ejecutamos el comando <code>mix new probando_plug</code> y añadimos las siguientes librerias a nuestro proyecto.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#mix.exs
+def deps do
+  [{:cowboy, "~&gt; 1.0.0"},
+   {:plug, "~&gt; 1.0"}]
+end
+</pre>
+
+</div>
+<p>
+declaramos tambien las aplicaciones otp que usaremos
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#mix.exs
+def application do
+  [applications: [:logger, :cowboy, :plug]]
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Para descargar las librerias usamos <code>mix deps.get</code> para luego crear el siguiente modulo
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#/lib/probando_plug.ex
+defmodule ProbandoPlug do
+  import Plug.Conn
+
+  def init(options), do: options
+
+  def call(conn, _opts) do
+    conn
+    |&gt; put_resp_content_type("text/plain")
+    |&gt; send_resp(200, "Hola Amiguitos")
+  end
+end
+</pre>
+
+</div>
+<p>
+Ejecutamos de la siguiente manera:
+</p>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+# iex -S mix
+iex&gt; {:ok, _} = Plug.Adapters.Cowboy.http ProbandoPlug, []
+{:ok, #PID&lt;0.175.0&gt;}
+</pre>
+
+</div>
+<p>
+Ahora revisa la pagina <a href="http://localhost:4000/">http://localhost:4000/</a>
+</p>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Es necesario más de un plug:
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#/lib/probando_plug.ex
+defmodule ProbandoPlug do
+  use Plug.Router
+
+  plug :match
+  plug :dispatch
+
+  get "/holi" do
+    conn
+    |&gt; put_resp_content_type("text/plain")
+    |&gt; send_resp(200, "Holi Woli")
+  end
+
+  match _ do
+    send_resp(conn, 404, "Not Found")
+  end
+end
+</pre>
+
+</div>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+$ iex -S mix
+iex&gt; {:ok, _} = Plug.Adapters.Cowboy.http ProbandoPlug, []
+{:ok, #PID&lt;0.175.0&gt;}
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class="fill white nobackground" style="background-image: url(images/pineapple_pen.gif)">
+<hgroup class="">
+       <h2 class="white "><div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19"></h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/phoenix.svg"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline24" class="outline-2">
+<h2 id="orgheadline24">Plug + OTP = Phoenix &lt;3</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+<p>
+Plug es 10% más rapido que Phoenix. Concidera usarlo si necesitas la maxima velocidad posible.
+</p>
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><a href="https://gist.github.com/omnibs/e5e72b31e6bd25caf39a">Benchmark Numbers in Rackspace machines</a></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Tiempo de respuesta en µs.
+</p>
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/benchmark.png" alt="benchmark.png" width="600px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="larger" id="text-">
+<p>
+<a href="http://confreaks.tv/videos/elixirconf2016-webrtc-and-phoenix-when-seconds-aren-t-fast-enough">Microsegundos es muy lento para ti</a>
+</p>
+
+<p>
+<a href="https://www.youtube.com/watch?v=xoNRtWl4fZU">Processing 2.7 million images with Elixir (vs Ruby)</a>
+</p>
+
+<p>
+<a href="http://confreaks.tv/conferences/elixir-conf">Otras Conferencias</a>
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22">Ventajas Phoenix &lt;3</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>Insanamente veloz.</li>
+<li>Soporte desde la caja para crear aplicaciones web y API REST (Mobiles y Sistemas Embebidos)</li>
+<li>Soporte desde la caja para crear aplicaciones en tiempo real (sockets and channels)</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23">Instalación</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+<a href="http://www.phoenixframework.org/docs/installation">Requerimientos</a>: (por ahora solo elixir es necesario)
+</p>
+<ul>
+<li>Elixir</li>
+<li><a href="http://www.enterprisedb.com/products-services-training/pgdownload">PostgreSql</a></li>
+<li><a href="https://nodejs.org/en/download/current/">Node</a> (se encargara de contruir archivo estaticos, para eso es bueno)</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="cmd">
+$ mix local.hex
+$ mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+# Creando nuevo proyecto
+$ mix phoenix.new holi --no-brunch
+$ cd hello_phoenix
+$ mix phoenix.server
+# Disfruta en tu navegador localhost:4000
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/phoenix.svg"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline33" class="outline-2">
+<h2 id="orgheadline33">Phoenix &lt;3</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25">Carpetas</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+├── _build
+├── config
+├── deps
+├── lib
+├── priv
+├── test
+├── web
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26">Archivos basicos de proyecto</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+...
+├── lib
+|   ├── holi
+|   |   ├── repo.ex
+|   |   └── endpoint.ex
+|   └── holi.ex
+├── mix.exs
+├── mix.lock
+├── test
+...
+</pre>
+
+</div>
+<p>
+<code>mix.exs</code>: Archivo configuracion de todo el proyecto (dependencias, etc)
+</p>
+
+<p>
+<code>lib/holi.ex</code>: Archivo que inicia nuestra aplicación.
+</p>
+
+<p>
+<code>lib/holi/endpoint.ex</code>: Archivo que inicia el servidor http.
+</p>
+
+<p>
+<code>lib/holi/endpoint.ex</code>: Archivo que inicia conexión con base de datos.
+</p>
+
+<p>
+<code>mix.lock</code>: Archivo Necesario para matener versiones instaladas entre entornos.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27">Entornos</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+...
+├── config
+|   ├── config.ecs
+|   ├── dex.exs
+|   ├── prod.exs
+|   ├── prod.secret.exs
+|   └── test.exs
+...
+</pre>
+
+</div>
+<p>
+Archivos para especifica configuracíon para especifica configuracion de nuestros entornos.
+<code>prod.secret.exs</code>: Archivo que no se sube al repositorio git por un tema de seguridad. Generalmente contiene contraseñas secretas de nuestro entorno de produccion.
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28">Carpetas</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+<code>deps</code>: Aqui se descargan todas nuestras dependencias sin ser compiladas.
+</p>
+
+<p>
+<code>_build</code>: Aqui las dependencias y nuestro proyecto se compila segun el entorno que le indiquemos.
+</p>
+
+<p>
+<code>priv</code>: Carpeta donde se soporta multilenguaje, migraciones de base de datos y archivos estaticos (js, css, img)
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#/lib/holi/endpoint.ex
+defmodule Holi.Endpoint do
+  use Phoenix.Endpoint, otp_app: :holi
+  socket "/socket", Holi.UserSocket
+  plug Plug.Static,
+    at: "/", from: :holi, gzip: false,
+    only: ~w(css fonts images js favicon.ico robots.txt)
+  if code_reloading? do
+    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
+    plug Phoenix.LiveReloader
+    plug Phoenix.CodeReloader
+  end
+  plug Plug.RequestId
+  plug Plug.Logger
+  plug Plug.Parsers,
+    parsers: [:urlencoded, :multipart, :json],
+    pass: ["*/*"],
+    json_decoder: Poison
+  plug Plug.MethodOverride
+  plug Plug.Head
+  plug Plug.Session,
+    store: :cookie,
+    key: "_holi_key",
+    signing_salt: "83zpZzlL"
+
+  plug Holi.Router
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30"></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="elixir">
+#/web/router.ex=
+defmodule Holi.Router do
+  use Holi.Web, :router
+
+  pipeline :browser do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+  end
+
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
+  scope "/", Holi do
+    pipe_through :browser # Use the default browser stack
+
+    get "/", PageController, :index
+  end
+
+  ...
+end
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31">MVC</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Regla o Convención:
+Si existe <code>PageController</code> (<code>/web/controllers/page_controller.ex</code>), entonces tambien existe <code>PageView</code> (<code>/web/view/page_view.ex</code>)
+</p>
+
+<p>
+Si existe <code>PageController</code> y <code>PageView</code> entonces existe la carpeta <code>web/templates/page/</code>
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgheadline32" class="outline-3">
+<h3 id="orgheadline32">Demos</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+"Creando una nueva url con diferente Controlador"
+"Creando una nueva url de la cual se obtienen parametros con diferente Controlador"
+</p>
+
+<p>
+Generadores automaticos con finalidad educativa:
+Formularios:
+<code>mix phoenix.gen.html User users name:string email:string bio:string number_of_pets:integer</code>
+</p>
+
+<p>
+API Rest:
+<code>mix phoenix.gen.html Amiguito amiguito nombre:string email:string number_de_amiguitos:integer</code>
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" thank-you-slide segue nobackground" style="background-image: url(nil)">
+<aside class="gdbar right"><img src="images/phoenix.svg"></aside><article class="flexbox vleft auto-fadein" id="text-">
+<h2>
+  <p>Gracias ˊ・ω・ˋ</p>
+</h2>
+<br>
+<p class="auto-fadein" data-config-contact>
+</p>
+</article>
+
+</slide>
+<slide class="backdrop"></slide>
+</slides> 
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body> 
+
+</html>

@@ -1,0 +1,435 @@
+#+TITLE: Programación funcional con Elixir y Phoenix orientado a Ingeniería
+#+SUBTITLE: OTP, Plug y Phoenix 
+#+AUTHOR: Albert Castellano Moreno
+#+EMAIL: acastemoreno@gmail.com
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:nil p:nil pri:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:nil todo:t |:t
+#+CREATOR: Emacs 24.4.1 (Org mode 8.2.10)
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: es
+#+SELECT_TAGS: export
+
+#+GITHUB: http://github.com/acastemoreno
+
+#+FAVICON: images/phoenix.svg
+#+ICON: images/phoenix.svg
+#+HASHTAG: #phoenix #AmiguitoEsMiPastorNadaMeFaltara
+
+* 
+:PROPERTIES:
+:FILL:   images/phoenix.gif
+:TITLE:    white
+:SLIDE:    white
+:END:
+
+** Contenido
+- OTP
+- Plug
+- Phoenix
+
+* Open Telephony Protocol (OTP)
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Qué es OTP?
+Es un framework de Erlang creado para construir sistemas distribuidos.
+
+Inicialmente se utilizó para construir centrales telefónicas y conmutadores.
+
+Sin embargo, estos dispositivos tienen las mismas caracteristicas que queremos para crear grandes aplicaciones online, asi que ahora OTP es una herramienta de proposito general para desarrollar y manejar grandes sistemas.
+
+** OTP: Application
+:PROPERTIES:
+:ARTICLE: smaller
+:END:
+OTP define sistemas en terminos de jerarquias de aplicaciones. 
+
+#+BEGIN_QUOTE
+一In OTP, application denotes a component implementing some specific functionality, that can be started and stopped as a unit, and which can be re-used in other systems as well.
+
+      -- OTP Documentation
+#+END_QUOTE
+Una aplicacion consiste en uno o más procesos. Cada uno de los procesos sigue uno de las pocas convenciones de OTP llamadas =behaviors=. Hay un =behavior= para implementar servidores de proposito general, otro para manejar eventos, etc.
+
+=Beam=, que es la maquina virtual donde Erlang y Elixir se ejecutan, puede ser vista como un sistema operativo. Donde cada programa en este sistema operativo es una aplicación. Los proyectos seran en realidad un conjunto de aplicaciones que usaran aplicaciones del mismo sistema operativo o de aplicaciones externas.
+
+** Why OTP?
+:PROPERTIES:
+:ARTICLE:  larger
+:END:
+Joe Armstrong dice OTP se ha utilizado para construir sistemas con 99.9999999% de fiabilidad. Eso son nueve nueves.
+
+Confiabilidad 99.9999999% equivalente a 1 segundo de inactividad cada 32 años. Cool.
+
+* Proyectos Mix son OTP Apps
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** OTP ~= Modelo actor
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 350px
+[[file:images/super.png]]
+#+END_CENTER
+
+** OTP ~= Modelo actor
+:PROPERTIES:
+:FILL:   images/modelo_actor.png
+:TITLE:    white
+:SLIDE:    white
+:END:
+
+* Plug
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+  microframework
+** Comó funciona Plug?
+Visitar una URL es como llamar a una función.
+#+BEGIN_SRC http
+http://  www.example.com   /    about-us         ?ref=google
+   |             |                 |                 |
+Protocol   Nombre de App   Nombre de Función     Argumentos
+#+END_SRC
+** 
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 200px
+[[file:images/plug.png]]
+#+END_CENTER
+** Request http
+#+BEGIN_SRC http
+GET /about-us HTTP/1.1
+Host: www.example.com
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml...
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh;...
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+#+END_SRC
+** Plug Convierte esta data en
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+#+BEGIN_SRC elixir
+%Plug.Conn{
+  host: "www.example.com",
+  method: "GET",
+  path_info: ["about-us"],
+  request_path: "/about-us",
+  port: 80,
+  remote_ip: 127.0.0.1,
+  req_headers: [
+    {"accept", "text/html,application/xhtml+xml..."},
+    {"upgrade-insecure-requests", 1},
+    {"user-agent", "Mozilla/5.0 (Macintosh;..."},
+    {"accept-encoding", "gzip, deflate, sdch"},
+    {"accept-language", "en-US,en;q=0.8"},
+  ],
+  scheme: :http,
+  # ...
+}
+#+END_SRC
+** 
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 550px
+[[file:images/plug_flujo.png]]
+#+END_CENTER
+Plugs son funciones que toman un =conn= y retornan un =conn=
+** Demo
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+Ejecutamos el comando =mix new probando_plug= y añadimos las siguientes librerias a nuestro proyecto.
+#+BEGIN_SRC elixir
+#mix.exs
+def deps do
+  [{:cowboy, "~> 1.0.0"},
+   {:plug, "~> 1.0"}]
+end
+#+END_SRC
+declaramos tambien las aplicaciones otp que usaremos
+#+BEGIN_SRC elixir
+#mix.exs
+def application do
+  [applications: [:logger, :cowboy, :plug]]
+end
+#+END_SRC
+** 
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+Para descargar las librerias usamos =mix deps.get= para luego crear el siguiente modulo
+#+BEGIN_SRC elixir
+#/lib/probando_plug.ex
+defmodule ProbandoPlug do
+  import Plug.Conn
+
+  def init(options), do: options
+
+  def call(conn, _opts) do
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, "Hola Amiguitos")
+  end
+end
+#+END_SRC
+Ejecutamos de la siguiente manera:
+
+#+BEGIN_SRC elixir
+# iex -S mix
+iex> {:ok, _} = Plug.Adapters.Cowboy.http ProbandoPlug, []
+{:ok, #PID<0.175.0>}
+#+END_SRC
+Ahora revisa la pagina [[http://localhost:4000/]]
+** 
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+Es necesario más de un plug:
+#+BEGIN_SRC elixir
+#/lib/probando_plug.ex
+defmodule ProbandoPlug do
+  use Plug.Router
+
+  plug :match
+  plug :dispatch
+
+  get "/holi" do
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, "Holi Woli")
+  end
+
+  match _ do
+    send_resp(conn, 404, "Not Found")
+  end
+end
+#+END_SRC
+#+BEGIN_SRC elixir
+$ iex -S mix
+iex> {:ok, _} = Plug.Adapters.Cowboy.http ProbandoPlug, []
+{:ok, #PID<0.175.0>}
+#+END_SRC
+
+* 
+:PROPERTIES:
+:FILL:   images/pineapple_pen.gif
+:TITLE:    white
+:SLIDE:    white
+:END:
+
+* Plug + OTP = Phoenix <3
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+  Plug es 10% más rapido que Phoenix. Concidera usarlo si necesitas la maxima velocidad posible.
+
+** [[https://gist.github.com/omnibs/e5e72b31e6bd25caf39a][Benchmark Numbers in Rackspace machines]]
+Tiempo de respuesta en µs.
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 600px
+[[file:images/benchmark.png]]
+#+END_CENTER
+** 
+:PROPERTIES:
+:ARTICLE:  larger
+:END:
+[[http://confreaks.tv/videos/elixirconf2016-webrtc-and-phoenix-when-seconds-aren-t-fast-enough][Microsegundos es muy lento para ti]]
+
+[[https://www.youtube.com/watch?v=xoNRtWl4fZU][Processing 2.7 million images with Elixir (vs Ruby)]]
+
+[[http://confreaks.tv/conferences/elixir-conf][Otras Conferencias]]
+
+** Ventajas Phoenix <3
+- Insanamente veloz.
+- Soporte desde la caja para crear aplicaciones web y API REST (Mobiles y Sistemas Embebidos)
+- Soporte desde la caja para crear aplicaciones en tiempo real (sockets and channels)
+
+** Instalación
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+[[http://www.phoenixframework.org/docs/installation][Requerimientos]]: (por ahora solo elixir es necesario)
+- Elixir
+- [[http://www.enterprisedb.com/products-services-training/pgdownload][PostgreSql]]
+- [[https://nodejs.org/en/download/current/][Node]] (se encargara de contruir archivo estaticos, para eso es bueno)
+#+BEGIN_SRC cmd
+$ mix local.hex
+$ mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+# Creando nuevo proyecto
+$ mix phoenix.new holi --no-brunch
+$ cd hello_phoenix
+$ mix phoenix.server
+# Disfruta en tu navegador localhost:4000
+#+END_SRC
+
+* Phoenix <3
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Carpetas
+#+BEGIN_SRC elixir
+├── _build
+├── config
+├── deps
+├── lib
+├── priv
+├── test
+├── web
+#+END_SRC
+
+** Archivos basicos de proyecto
+:PROPERTIES:
+:ARTICLE:  smaller
+:END:
+#+BEGIN_SRC elixir
+...
+├── lib
+|   ├── holi
+|   |   ├── repo.ex
+|   |   └── endpoint.ex
+|   └── holi.ex
+├── mix.exs
+├── mix.lock
+├── test
+...
+#+END_SRC
+=mix.exs=: Archivo configuracion de todo el proyecto (dependencias, etc)
+
+=lib/holi.ex=: Archivo que inicia nuestra aplicación.
+
+=lib/holi/endpoint.ex=: Archivo que inicia el servidor http.
+
+=lib/holi/endpoint.ex=: Archivo que inicia conexión con base de datos.
+
+=mix.lock=: Archivo Necesario para matener versiones instaladas entre entornos.
+
+** Entornos
+#+BEGIN_SRC elixir
+...
+├── config
+|   ├── config.ecs
+|   ├── dex.exs
+|   ├── prod.exs
+|   ├── prod.secret.exs
+|   └── test.exs
+...
+#+END_SRC
+Archivos para especifica configuracíon para especifica configuracion de nuestros entornos.
+=prod.secret.exs=: Archivo que no se sube al repositorio git por un tema de seguridad. Generalmente contiene contraseñas secretas de nuestro entorno de produccion.
+
+** Carpetas
+=deps=: Aqui se descargan todas nuestras dependencias sin ser compiladas.
+
+=_build=: Aqui las dependencias y nuestro proyecto se compila segun el entorno que le indiquemos.
+
+=priv=: Carpeta donde se soporta multilenguaje, migraciones de base de datos y archivos estaticos (js, css, img)
+
+** 
+:PROPERTIES:
+:ARTICLE: smaller
+:END:
+#+BEGIN_SRC elixir
+#/lib/holi/endpoint.ex
+defmodule Holi.Endpoint do
+  use Phoenix.Endpoint, otp_app: :holi
+  socket "/socket", Holi.UserSocket
+  plug Plug.Static,
+    at: "/", from: :holi, gzip: false,
+    only: ~w(css fonts images js favicon.ico robots.txt)
+  if code_reloading? do
+    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
+    plug Phoenix.LiveReloader
+    plug Phoenix.CodeReloader
+  end
+  plug Plug.RequestId
+  plug Plug.Logger
+  plug Plug.Parsers,
+    parsers: [:urlencoded, :multipart, :json],
+    pass: ["*/*"],
+    json_decoder: Poison
+  plug Plug.MethodOverride
+  plug Plug.Head
+  plug Plug.Session,
+    store: :cookie,
+    key: "_holi_key",
+    signing_salt: "83zpZzlL"
+
+  plug Holi.Router
+end
+#+END_SRC
+
+** 
+:PROPERTIES:
+:ARTICLE: smaller
+:END:
+#+BEGIN_SRC elixir
+#/web/router.ex=
+defmodule Holi.Router do
+  use Holi.Web, :router
+
+  pipeline :browser do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+  end
+
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
+  scope "/", Holi do
+    pipe_through :browser # Use the default browser stack
+
+    get "/", PageController, :index
+  end
+
+  ...
+end
+#+END_SRC
+** MVC
+:PROPERTIES:
+:ARTICLE: smaller
+:END:
+Regla o Convención:
+Si existe =PageController= (=/web/controllers/page_controller.ex=), entonces tambien existe =PageView= (=/web/view/page_view.ex=)
+
+Si existe =PageController= y =PageView= entonces existe la carpeta =web/templates/page/=
+
+** Demos
+"Creando una nueva url con diferente Controlador"
+"Creando una nueva url de la cual se obtienen parametros con diferente Controlador"
+
+Generadores automaticos con finalidad educativa:
+Formularios:
+=mix phoenix.gen.html User users name:string email:string bio:string number_of_pets:integer=
+
+API Rest:
+=mix phoenix.gen.html Amiguito amiguito nombre:string email:string number_de_amiguitos:integer=
+
+* Gracias ˊ・ω・ˋ
+  :PROPERTIES:
+  :SLIDE: thank-you-slide segue
+  :ASIDE: right
+  :ARTICLE: flexbox vleft auto-fadein
+  :END:
